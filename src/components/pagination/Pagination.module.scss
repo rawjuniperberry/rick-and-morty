@@ -1,0 +1,33 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+
+  .sites {
+    min-width: 400px;
+    display: flex;
+    justify-content: space-evenly;
+
+    .navigation {
+      display: flex;
+
+      .currentPage {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        margin: 0 15px;
+        background-color: var(--yellow);
+        border-radius: 5px;
+        color: white;
+        padding: 10px;
+        font-size: 18px;
+      }
+    }
+
+    button {
+      width: 50px;
+      font-size: 18px;
+    }
+  }
+}

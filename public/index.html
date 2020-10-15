@@ -3,7 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta id="myViewport" name="viewport" content="width=device-width, initial-scale=1"/>
+    <script>
+      window.onload = () => {
+        if (screen.width <= 400) {
+          const mvp = document.getElementById('myViewport')
+          mvp.setAttribute('content', 'width=400')
+        }
+      }
+    </script>
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
