@@ -1,13 +1,14 @@
 import React from 'react'
-import styles from 'search/showTiles/characterTile/CharacterTile.module.scss'
+import {Link} from 'react-router-dom'
+import styles from 'components/tiles/characterTile/CharacterTile.module.scss'
 
 type TProps = {character: TCharacter}
 
 export function CharacterTile({character}: TProps) {
-    const {gender, name, image, status} = character
+    const {id, gender, name, image, status} = character
 
     return (
-        <section className={styles.characterTile}>
+        <Link to={'/show/character/' + id} className={styles.characterTile}>
             <img src={image} alt={'image of ' + name}/>
 
             <div className={styles.content}>
@@ -15,7 +16,6 @@ export function CharacterTile({character}: TProps) {
                 <div>{gender}</div>
                 <div>{status}</div>
             </div>
-
-        </section>
+        </Link>
     )
 }

@@ -1,0 +1,21 @@
+.character {
+  .content {
+    display: grid;
+    justify-content: center;
+    grid-gap: 50px;
+  }
+
+  @media (min-width: 600px) {
+    .content {
+      grid-template-columns: 300px max-content;
+
+      .image {
+        grid-column: 1/2;
+      }
+
+      .data {
+        grid-column: 2/3;
+      }
+    }
+  }
+}

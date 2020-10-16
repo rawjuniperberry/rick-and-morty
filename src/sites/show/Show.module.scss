@@ -1,0 +1,17 @@
+.show {
+  h1 {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+  }
+
+  .property {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+
+    div:first-of-type {
+      margin-right: 10px;
+    }
+  }
+}

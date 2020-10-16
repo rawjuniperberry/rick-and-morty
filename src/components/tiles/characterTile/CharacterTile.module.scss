@@ -1,6 +1,9 @@
 .characterTile {
   max-width: 300px;
   border-radius: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   img {
     border-radius: 10px 10px 0 0;
@@ -12,6 +15,9 @@
     border-radius: 0 0 10px 10px;
     background-color: var(--turquoise);
     color: white;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 
     h3 {
       margin-top: 5px;

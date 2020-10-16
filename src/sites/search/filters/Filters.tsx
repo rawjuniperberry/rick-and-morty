@@ -2,15 +2,15 @@ import {Select, TOptions} from 'components/select/Select'
 import {ReactComponent as Close} from 'icons/close.svg'
 import React, {FormEvent, useEffect, useState} from 'react'
 import {Link, useLocation} from 'react-router-dom'
-import styles from 'search/filters/Filters.module.scss'
+import {ContentType} from 'service/contentParam'
+import styles from 'sites/search/filters/Filters.module.scss'
 import {
     optionsCharacter,
     optionsCharacterGender,
     optionsCharacterStatus,
     optionsEpisode,
     optionsLocation,
-} from 'search/filters/selectOptions'
-import {ContentType} from 'search/Search'
+} from 'sites/search/filters/selectOptions'
 
 type TProps = {contentType: ContentType}
 const initSearchText = {value: '', err: null}

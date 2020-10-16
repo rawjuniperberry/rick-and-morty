@@ -2,7 +2,7 @@ import {ReactComponent as ArrowLeft} from 'icons/arrowLeft.svg'
 import {ReactComponent as ArrowRight} from 'icons/arrowRight.svg'
 import React from 'react'
 import {useHistory, useLocation} from 'react-router-dom'
-import styles from './Pagination.module.scss'
+import styles from 'sites/search/pagination/Pagination.module.scss'
 
 type TProps = {pages: number}
 

@@ -1,36 +1,21 @@
 import axios from 'axios'
-import {Pagination} from 'components/pagination/Pagination'
 import React, {useEffect, useState} from 'react'
 import {useHistory, useLocation, useParams} from 'react-router-dom'
-import {Filters} from 'search/filters/Filters'
-import styles from 'search/Search.module.scss'
-import {ShowTiles} from './showTiles/ShowTiles'
-
-export enum ContentType {characters = 'character', locations = 'location', episodes = 'episode'}
+import {ContentType, getContentTypeFromStr} from 'service/contentParam'
+import {Filters} from 'sites/search/filters/Filters'
+import {Pagination} from 'sites/search/pagination/Pagination'
+import styles from 'sites/search/Search.module.scss'
+import {ShowTiles} from 'sites/search/ShowTiles'
 
 export function Search() {
     const [contentType, setContentType] = useState<ContentType>(ContentType.characters)
     const [dataServer, setDataServer] = useState<TServer>()
     const [err, setErr] = useState<TErr>(null)
     const {search} = useLocation()
-    const {contentParam} = useParams()
+    const {contentParam} = useParams<{contentParam: string}>()
     const history = useHistory()
 
-    useEffect(() => {
-        switch (contentParam) {
-            case ContentType.characters:
-                return setContentType(ContentType.characters)
-
-            case ContentType.locations:
-                return setContentType(ContentType.locations)
-
-            case ContentType.episodes:
-                return setContentType(ContentType.episodes)
-
-            default:
-                return setContentType(ContentType.characters)
-        }
-    }, [contentParam])
+    useEffect(() => setContentType(getContentTypeFromStr(contentParam)), [contentParam])
 
     useEffect(() => {
         if (!contentType) return

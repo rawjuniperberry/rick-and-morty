@@ -8,7 +8,26 @@ body {
 
 main {
   display: flex;
+  flex-direction: column;
+  padding-bottom: 50px;
   flex: 1 0 auto;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1.17em;
+  }
 }
 
 #root {
