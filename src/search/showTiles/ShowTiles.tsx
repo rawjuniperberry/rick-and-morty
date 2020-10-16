@@ -5,10 +5,11 @@ import {EpisodeTile} from 'search/showTiles/episodeTile/EpisodeTile'
 import {LocationTile} from 'search/showTiles/locationTile/LocationTile'
 import styles from './ShowTiles.module.scss'
 
-type TProps = {contentType: ContentType, results?: TResults}
+type TProps = {contentType: ContentType, results?: TResults, err: TErr}
 
-export function ShowTiles({contentType, results}: TProps) {
+export function ShowTiles({contentType, results, err}: TProps) {
 
+    if (err) return <div>{err}</div>
     if (!results) return <div>No results</div>
 
     return (

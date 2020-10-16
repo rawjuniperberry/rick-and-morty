@@ -1,0 +1,70 @@
+.filters {
+  margin-top: 50px;
+
+  .setFilters {
+    display: flex;
+    justify-content: center;
+
+    .typeOfSearch {
+      width: 120px;
+      margin: 0 10px;
+    }
+
+    .search {
+      width: 200px;
+      margin: 0 10px;
+    }
+  }
+
+  .error {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    height: 20px;
+    color: hsl(40, 100%, 40%);
+    font-weight: bold;
+  }
+
+  .showFilters {
+    display: flex;
+    flex-wrap: wrap;
+
+    > div {
+      min-width: max-content;
+      display: flex;
+      align-items: center;
+      margin: 5px 10px;
+      padding: 5px 10px;
+      background-color: var(--yellowDark);
+      color: white;
+      border-radius: 10px;
+
+      button {
+        color: white;
+        margin-left: 8px;
+
+        svg {
+          display: block;
+          height: 25px;
+          width: 25px;
+        }
+      }
+    }
+  }
+
+  .showResults {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+
+    a {
+      display: flex;
+      justify-content: center;
+      background-color: violet;
+      border-radius: 10px;
+      padding: 10px;
+      text-decoration: none;
+      width: 350px;
+    }
+  }
+}

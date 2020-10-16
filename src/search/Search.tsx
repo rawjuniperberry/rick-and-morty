@@ -2,6 +2,7 @@ import axios from 'axios'
 import {Pagination} from 'components/pagination/Pagination'
 import React, {useEffect, useState} from 'react'
 import {useHistory, useLocation, useParams} from 'react-router-dom'
+import {Filters} from 'search/filters/Filters'
 import styles from 'search/Search.module.scss'
 import {ShowTiles} from './showTiles/ShowTiles'
 
@@ -10,6 +11,7 @@ export enum ContentType {characters = 'character', locations = 'location', episo
 export function Search() {
     const [contentType, setContentType] = useState<ContentType>(ContentType.characters)
     const [dataServer, setDataServer] = useState<TServer>()
+    const [err, setErr] = useState<TErr>(null)
     const {search} = useLocation()
     const {contentParam} = useParams()
     const history = useHistory()
@@ -34,7 +36,11 @@ export function Search() {
         if (!contentType) return
 
         axios.get(`https://rickandmortyapi.com/api/${contentType}${search}`)
-            .then(({data}: {data: TServer}) => setDataServer(data))
+            .then(({data}: {data: TServer}) => {
+                setDataServer(data)
+                setErr(null)
+            })
+            .catch(({response}) => setErr(response.data.error))
     }, [search, contentType])
 
     return (
@@ -51,16 +57,11 @@ export function Search() {
                 <button className='btn' onClick={() => history.push('/search/episode')}>Episodes</button>
             </div>
 
-            <div className={styles.find}>
-                <label>
-                    <div>Search</div>
-                    <input className='input' type="text"/>
-                </label>
-            </div>
+            <Filters contentType={contentType}/>
 
-            <ShowTiles contentType={contentType} results={dataServer?.results}/>
+            <ShowTiles contentType={contentType} results={dataServer?.results} err={err}/>
 
-            {dataServer && <Pagination info={dataServer.info}/>}
+            {!err && dataServer && <Pagination pages={dataServer.info.pages}/>}
         </article>
     )
 }

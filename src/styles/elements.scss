@@ -1,8 +1,9 @@
 .input {
   box-sizing: border-box;
   height: 50px;
+  width: 100%;
   padding: 10px 20px;
-  border-radius: 40px;
+  border-radius: 25px;
   border: none;
   background-color: var(--turquoiseLight);
   font-size: 100%;
@@ -29,4 +30,12 @@
     background-color: gray;
     cursor: default;
   }
+}
+
+.btnClear {
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  color: black;
 }

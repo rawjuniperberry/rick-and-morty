@@ -4,19 +4,20 @@ import React from 'react'
 import {useHistory, useLocation} from 'react-router-dom'
 import styles from './Pagination.module.scss'
 
-type TProps = {info: TInfo}
+type TProps = {pages: number}
 
-export function Pagination({info: {pages}}: TProps) {
+export function Pagination({pages}: TProps) {
     const history = useHistory()
     const {search} = useLocation()
 
-    const url = new URLSearchParams(search)
-    const currentPage = url.get('page') ? Number(url.get('page')) : 1
+    const params = new URLSearchParams(search)
+    const paramPage = params.get('page')
+    const currentPage = paramPage ? Number(paramPage) : 1
 
     const changePage = (page: number) => {
-        url.set('page', String(page))
+        params.set('page', String(page))
 
-        history.push('?' + url.toString())
+        history.push('?' + params.toString())
         window.scroll(0, 0)
     }
 
