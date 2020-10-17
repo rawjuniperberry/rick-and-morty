@@ -1,16 +1,16 @@
 body {
-  background-color: hsl(0, 0%, 95%);
+  background-color: var(--background);
   margin: 0;
   font-family: Montserrat, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
 
-main {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 50px;
-  flex: 1 0 auto;
+  main {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 50px;
+    flex: 1 0 auto;
+  }
 
   a {
     text-decoration: none;
