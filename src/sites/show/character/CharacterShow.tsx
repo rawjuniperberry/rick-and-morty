@@ -63,7 +63,7 @@ export function CharacterShow() {
             </div>
 
             <section>
-                <h2>Episodes</h2>
+                <h2>Seen in the episodes:</h2>
                 {arrayOfId && <EpisodeList arrayOfId={arrayOfId}/>}
             </section>
 

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {Loader} from 'components/loader/Loader'
+import {NoCharacters} from 'components/noCharacters/NoCharacters'
 import {ShowError} from 'components/showError/ShowError'
 import {CharacterTile} from 'components/tiles/characterTile/CharacterTile'
 import React, {useEffect, useState} from 'react'
@@ -28,7 +29,7 @@ export function CharacterList({arrayOfId}: TProps) {
             {characters.length ?
                 characters.map(el => <CharacterTile key={el.id} character={el}/>)
                 :
-                <div>No characters</div>}
+                <NoCharacters/>}
         </section>
     )
 }

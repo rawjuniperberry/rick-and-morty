@@ -37,7 +37,7 @@ export function EpisodeShow() {
         <article className={styles.episode}>
             <h1>{name}</h1>
 
-            <section>
+            <section className={styles.content}>
                 <EpisodeMark mark={episode.episode}/>
                 <div className={stylesShow.property}>
                     <div>Air date:</div>
@@ -46,7 +46,7 @@ export function EpisodeShow() {
             </section>
 
             <section>
-                <h2>Residents</h2>
+                <h2>Characters from the episode:</h2>
                 {arrayOfId && <CharacterList arrayOfId={arrayOfId}/>}
             </section>
         </article>

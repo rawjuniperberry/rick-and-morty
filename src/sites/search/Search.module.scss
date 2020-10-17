@@ -1,5 +1,5 @@
 .search {
-  margin-top: 70px;
+  margin-top: 50px;
 
   h1 {
     font-size: 40px;
@@ -9,8 +9,23 @@
   }
 
   .select {
+    border: 1px solid gray;
+    border-radius: 50px;
     margin-top: 70px;
-    display: flex;
-    justify-content: space-around;
+    height: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
+      transition: all ease-in-out .5s;
+    }
+
+    .active {
+      background-color: lightgray;
+    }
   }
 }

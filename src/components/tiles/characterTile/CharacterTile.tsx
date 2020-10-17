@@ -1,6 +1,6 @@
+import styles from 'components/tiles/characterTile/CharacterTile.module.scss'
 import React from 'react'
 import {Link} from 'react-router-dom'
-import styles from 'components/tiles/characterTile/CharacterTile.module.scss'
 
 type TProps = {character: TCharacter}
 
@@ -13,8 +13,14 @@ export function CharacterTile({character}: TProps) {
 
             <div className={styles.content}>
                 <h3>{name}</h3>
-                <div>{gender}</div>
-                <div>{status}</div>
+                <div className={styles.property}>
+                    <div>Status:</div>
+                    <div>{status}</div>
+                </div>
+                <div className={styles.property}>
+                    <div>Gender:</div>
+                    <div>{gender}</div>
+                </div>
             </div>
         </Link>
     )

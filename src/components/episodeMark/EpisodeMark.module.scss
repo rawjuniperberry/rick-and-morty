@@ -1,6 +1,7 @@
 .mark {
+  min-width: 250px;
   max-width: 300px;
-  background-color: hsl(300, 76%, 32%);
+  background-color: var(--episode);
   color: white;
   display: flex;
   justify-content: center;

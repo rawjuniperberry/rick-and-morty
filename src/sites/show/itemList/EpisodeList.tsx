@@ -25,10 +25,7 @@ export function EpisodeList({arrayOfId}: TProps) {
 
     return (
         <section className='itemList'>
-            {episodes.length ?
-                episodes.map(el => <EpisodeTile key={el.id} episode={el}/>)
-                :
-                <div>No episodes</div>}
+            {episodes.map(el => <EpisodeTile key={el.id} episode={el}/>)}
         </section>
     )
 }

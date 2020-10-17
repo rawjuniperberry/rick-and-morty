@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, {useEffect, useState} from 'react'
-import {useHistory, useLocation, useParams} from 'react-router-dom'
+import {NavLink, useLocation, useParams} from 'react-router-dom'
 import {ContentType, getContentTypeFromStr} from 'service/contentParam'
 import {Filters} from 'sites/search/filters/Filters'
 import {Pagination} from 'sites/search/pagination/Pagination'
@@ -13,7 +13,6 @@ export function Search() {
     const [err, setErr] = useState<TErr>(null)
     const {search} = useLocation()
     const {contentParam} = useParams<{contentParam: string}>()
-    const history = useHistory()
 
     useEffect(() => setContentType(getContentTypeFromStr(contentParam)), [contentParam])
 
@@ -37,9 +36,9 @@ export function Search() {
             </h1>
 
             <div className={styles.select}>
-                <button className='btn' onClick={() => history.push('/search/character')}>Characters</button>
-                <button className='btn' onClick={() => history.push('/search/location')}>Locations</button>
-                <button className='btn' onClick={() => history.push('/search/episode')}>Episodes</button>
+                <NavLink to='/search/character' activeClassName={styles.active}>Characters</NavLink>
+                <NavLink to='/search/location' activeClassName={styles.active}>Locations</NavLink>
+                <NavLink to='/search/episode' activeClassName={styles.active}>Episodes</NavLink>
             </div>
 
             <Filters contentType={contentType}/>

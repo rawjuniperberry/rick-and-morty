@@ -36,7 +36,7 @@ export function LocationShow() {
         <article className={styles.location}>
             <h1>{name}</h1>
 
-            <section>
+            <section className={styles.content}>
                 <div className={stylesShow.property}>
                     <div>Dimension:</div>
                     <div>{dimension}</div>
@@ -47,8 +47,8 @@ export function LocationShow() {
                 </div>
             </section>
 
-            <section>
-                <h2>Residents</h2>
+            <section className={styles.residents}>
+                <h2>Residents of the location:</h2>
                 {arrayOfId && <CharacterList arrayOfId={arrayOfId}/>}
             </section>
         </article>

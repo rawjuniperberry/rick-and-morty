@@ -14,11 +14,11 @@ function App() {
                 <Header/>
                 <main className='container'>
                     <Switch>
-                        <Route exact path='/'>
+                        <Route exact path={['/', '/search']}>
                             <Redirect to="/search/character"/>
                         </Route>
 
-                        <Route path={['/search/:contentParam', '/search']} component={Search}/>
+                        <Route path='/search/:contentParam' component={Search}/>
                         <Route path='/show' component={Show}/>
                     </Switch>
                 </main>

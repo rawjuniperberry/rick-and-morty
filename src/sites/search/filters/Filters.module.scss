@@ -4,15 +4,16 @@
   .setFilters {
     display: flex;
     justify-content: center;
+    align-items: center;
 
     .typeOfSearch {
-      width: 120px;
-      margin: 0 10px;
+      min-width: 120px;
+      margin-right: 10px;
     }
 
     .search {
       width: 200px;
-      margin: 0 10px;
+      margin-right: 10px;
     }
   }
 
@@ -21,7 +22,7 @@
     justify-content: center;
     margin: 10px 0;
     height: 20px;
-    color: hsl(40, 100%, 40%);
+    color: var(--error);
     font-weight: bold;
   }
 
@@ -35,12 +36,10 @@
       align-items: center;
       margin: 5px 10px;
       padding: 5px 10px;
-      background-color: var(--yellowDark);
-      color: white;
+      background-color: var(--green);
       border-radius: 10px;
 
       button {
-        color: white;
         margin-left: 8px;
 
         svg {
@@ -61,7 +60,6 @@
     a {
       display: flex;
       justify-content: center;
-      background-color: violet;
       border-radius: 10px;
       padding: 10px;
       width: 350px;

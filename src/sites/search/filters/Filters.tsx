@@ -109,7 +109,7 @@ export function Filters({contentType}: TProps) {
             </section>
 
             <div className={styles.showResults}>
-                <Link to={`/search/${contentType}?${paramsStr}`}>Show results</Link>
+                <Link to={`/search/${contentType}?${paramsStr}`} className='btn'>Show results</Link>
             </div>
         </section>
     )
