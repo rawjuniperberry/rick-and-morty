@@ -1,12 +1,13 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {TStoreState} from 'store/store'
 
-export type TAuthState = {name: string, uuid: string}
-export type TAuthSignInPayload = {name: string, uuid: string}
+export type TAuthState = {name: string, uuid: string, JWT: string}
+export type TAuthSignInPayload = {name: string, uuid: string, JWT: string}
 
 const initialState: TAuthState = {
     name: '',
     uuid: '',
+    JWT: '',
 }
 
 const authSlice = createSlice({
@@ -14,13 +15,15 @@ const authSlice = createSlice({
     initialState: initialState,
     reducers: {
         signIn: (state, action: PayloadAction<TAuthSignInPayload>) => {
-            state.name = action.payload.name
-            state.uuid = action.payload.uuid
-            localStorage.setItem('account', action.payload.name + '|' + action.payload.uuid)
+            const {name, uuid, JWT} =action.payload
+            state.name = name
+            state.uuid = uuid
+            localStorage.setItem('account', `${name}|${uuid}|${JWT}`)
         },
         signOut: state => {
             state.name = ''
             state.uuid = ''
+            state.JWT = ''
             localStorage.removeItem('account')
         },
     },

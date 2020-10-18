@@ -8,9 +8,9 @@ export function AuthSync() {
     const handleAccountState = useCallback((account: string | null) => {
         if (!account) return dispatch(signOut())
 
-        const nameUuid = account.split('|')
+        const [name, uuid, JWT] = account.split('|')
 
-        dispatch(signIn({name: nameUuid[0], uuid: nameUuid[1]}))
+        dispatch(signIn({name, uuid, JWT}))
     }, [dispatch])
 
     useEffect(() => {
