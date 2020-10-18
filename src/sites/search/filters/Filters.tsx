@@ -91,25 +91,30 @@ export function Filters({contentType}: TProps) {
                                     value={searchSelect}
                                     setValue={x => setSearchSelect({...searchSelect, ...x})}/>
                             :
-                            <input className='input' type="text" maxLength={100}
+                            <input className='input' type="text" maxLength={100} data-testid='inputFilterPhrase'
                                    value={searchText.value}
                                    onChange={({target}) => setSearchText({value: target.value, err: null})}/>}
                     </div>
-                    <button type='submit' className='btn'>Set filter</button>
+                    <button type='submit' className='btn' data-testid='buttonSetFilter'>Set filter</button>
                 </div>
                 <div className={styles.error}>{!searchSelect && searchText.err}</div>
             </form>
 
             <section className={styles.showFilters}>
                 {Array.from(new URLSearchParams(paramsStr)).map(([paramName, paramValue], idx) =>
-                    <div key={idx}>
+                    <div key={idx} data-testid='filterParam'>
                         <div>{paramName}: {paramValue}</div>
-                        <button className='btnClear' onClick={() => deleteParam(paramName)}><Close/></button>
+                        <button className='btnClear' data-testid='removeFilterParam'
+                                onClick={() => deleteParam(paramName)}>
+                            <Close/>
+                        </button>
                     </div>)}
             </section>
 
             <div className={styles.showResults}>
-                <Link to={`/search/${contentType}?${paramsStr}`} className='btn'>Show results</Link>
+                <Link to={`/search/${contentType}?${paramsStr}`} className='btn' data-testid='showResults'>
+                    Show results
+                </Link>
             </div>
         </section>
     )

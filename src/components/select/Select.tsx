@@ -17,7 +17,7 @@ export function Select({options, value, setValue}: TProps) {
 
     return (
         <section className={styles.select}>
-            <button className={'btnClear ' + styles.chosen} type='button'
+            <button className={'btnClear ' + styles.chosen} type='button' data-testid='selectValue'
                     style={{borderRadius: open ? '25px 25px 0 0' : '25px'}}
                     onClick={() => setOpen(true)}>
                 <div>{value.label}</div>

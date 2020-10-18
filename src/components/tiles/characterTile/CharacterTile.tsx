@@ -8,7 +8,7 @@ export function CharacterTile({character}: TProps) {
     const {id, gender, name, image, status} = character
 
     return (
-        <Link to={'/show/character/' + id} className={styles.characterTile}>
+        <Link to={'/show/character/' + id} className={styles.characterTile} data-testid='characterTile'>
             <img src={image} alt={'image of ' + name}/>
 
             <div className={styles.content}>
