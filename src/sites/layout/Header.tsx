@@ -1,14 +1,15 @@
 import {ReactComponent as Home} from 'icons/home.svg'
 import {ReactComponent as Person} from 'icons/person.svg'
 import React from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {selectAuth, signOut} from 'sites/login/auth/authSlice'
 import styles from 'sites/layout/Header.module.scss'
+import {selectAuth} from 'sites/login/auth/authSlice'
+import {useSignOut} from 'sites/login/auth/useSignOut'
 
 export function Header() {
     const auth = useSelector(selectAuth)
-    const dispatch = useDispatch()
+    const signOut = useSignOut()
 
     return (
         <header className={styles.header}>
@@ -25,7 +26,7 @@ export function Header() {
                         <Person/>
                     </div>
 
-                    <button className='btnClear' onClick={() => dispatch(signOut())}>
+                    <button className='btnClear' onClick={() => signOut()}>
                         <div>Sign out</div>
                     </button>
                 </div>
