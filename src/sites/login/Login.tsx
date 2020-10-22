@@ -1,5 +1,5 @@
 import {yupResolver} from '@hookform/resolvers/yup'
-import React from 'react'
+import React, {useState} from 'react'
 import {useForm} from 'react-hook-form'
 import {useDispatch} from 'react-redux'
 import {signIn} from 'sites/login/auth/authSlice'
@@ -26,19 +26,26 @@ type TFormSchema = yup.InferType<typeof schema>
 
 export function Login() {
     const {register, handleSubmit, errors} = useForm<TFormSchema>({resolver: yupResolver(schema)})
+    const [failedLogin, setFiledLogin] = useState('')
     const history = useHistory()
     const dispatch = useDispatch()
 
     const onSubmit = handleSubmit(({email, password}) => {
+        setFiledLogin('')
+
         if (email === Rick.email && password === Rick.password) {
             dispatch(signIn(Rick.payload))
             history.push('/dashboard')
+            return
         }
 
         if (email === Morty.email && password === Morty.password) {
             dispatch(signIn(Morty.payload))
             history.push('/dashboard')
+            return
         }
+
+        setFiledLogin('Sign in failed')
     })
 
     return (
@@ -58,6 +65,7 @@ export function Login() {
                 </label>
 
                 <button className='btn' type='submit'>Submit</button>
+                <div className={styles.error}>{failedLogin}</div>
             </form>
 
             <section className={styles.credentials}>
