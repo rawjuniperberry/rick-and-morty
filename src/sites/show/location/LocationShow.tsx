@@ -1,36 +1,29 @@
-import axios from 'axios'
 import {Loader} from 'components/loader/Loader'
 import {ShowError} from 'components/showError/ShowError'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
-import {CharacterList} from 'sites/show/itemList/CharacterList'
+import {CharacterListShow} from 'sites/show/itemList/CharacterListShow'
 import styles from 'sites/show/location/LocationShow.module.scss'
+import {fetchLocation, selectLocation} from 'sites/show/location/locationSlice'
 import stylesShow from 'sites/show/Show.module.scss'
 
 export function LocationShow() {
     const {id} = useParams()
-    const [location, setLocation] = useState<TLocation>()
-    const [err, setErr] = useState<TErr>(null)
-    const [arrayOfId, setArrayOfId] = useState<string[]>()
+    const {value, characterList, errorList, errorValue} = useSelector(selectLocation)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (!id) return
 
-        axios.get(`https://rickandmortyapi.com/api/location/${id}`)
-            .then(({data}: {data: TLocation}) => setLocation(data))
-            .catch(({response}) => setErr(response.data.error))
-    }, [id])
+        dispatch(fetchLocation({id}))
+    }, [dispatch, id])
 
-    useEffect(() => {
-        if (!location) return
 
-        setArrayOfId(location.residents.map(el => el.slice(42)))
-    }, [location])
+    if (errorValue) return <ShowError text={errorValue}/>
+    if (!value) return <Loader/>
 
-    if (err) return <ShowError text={err}/>
-    if (!location) return <Loader/>
-
-    const {name, dimension, type} = location
+    const {name, dimension, type} = value
 
     return (
         <article className={styles.location}>
@@ -49,7 +42,7 @@ export function LocationShow() {
 
             <section className={styles.residents}>
                 <h2>Residents of the location:</h2>
-                {arrayOfId && <CharacterList arrayOfId={arrayOfId}/>}
+                <CharacterListShow list={characterList} error={errorList}/>
             </section>
         </article>
     )

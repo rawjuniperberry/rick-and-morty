@@ -1,31 +1,29 @@
-import axios from 'axios'
+import {Loader} from 'components/loader/Loader'
+import {ShowError} from 'components/showError/ShowError'
 import React, {useEffect, useState} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import {NavLink, useLocation, useParams} from 'react-router-dom'
 import {ContentType, getContentTypeFromStr} from 'service/contentParam'
 import {Filters} from 'sites/search/filters/Filters'
 import {Pagination} from 'sites/search/pagination/Pagination'
 import styles from 'sites/search/Search.module.scss'
+import {fetchResults, selectSearch} from 'sites/search/searchSlice'
 import {ShowTiles} from 'sites/search/ShowTiles'
 
 export function Search() {
     const [contentType, setContentType] = useState<ContentType>(ContentType.characters)
-    const [dataServer, setDataServer] = useState<TServer>()
-    const [err, setErr] = useState<TErr>(null)
     const {search} = useLocation()
     const {contentParam} = useParams<{contentParam: string}>()
+    const {dataServer, loading, error} = useSelector(selectSearch)
+    const dispatch = useDispatch()
 
     useEffect(() => setContentType(getContentTypeFromStr(contentParam)), [contentParam])
 
     useEffect(() => {
         if (!contentType) return
 
-        axios.get(`https://rickandmortyapi.com/api/${contentType}${search}`)
-            .then(({data}: {data: TServer}) => {
-                setDataServer(data)
-                setErr(null)
-            })
-            .catch(({response}) => setErr(response.data.error))
-    }, [search, contentType])
+        dispatch(fetchResults({contentType, search}))
+    }, [dispatch, search, contentType])
 
     return (
         <article className={styles.search}>
@@ -43,9 +41,15 @@ export function Search() {
 
             <Filters contentType={contentType}/>
 
-            <ShowTiles contentType={contentType} results={dataServer?.results} err={err}/>
+            {error && <ShowError text={error}/>}
+            {loading === 'pending' && <Loader/>}
 
-            {!err && dataServer && <Pagination pages={dataServer.info.pages}/>}
+            {!error && loading !== 'pending' && dataServer &&
+            <div>
+                <ShowTiles contentType={contentType} results={dataServer.results}/>
+                <Pagination pages={dataServer.info.pages}/>
+            </div>}
+
         </article>
     )
 }

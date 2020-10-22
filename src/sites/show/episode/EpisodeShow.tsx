@@ -1,44 +1,36 @@
-import axios from 'axios'
 import {EpisodeMark} from 'components/episodeMark/EpisodeMark'
 import {Loader} from 'components/loader/Loader'
 import {ShowError} from 'components/showError/ShowError'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
 import styles from 'sites/show/episode/EpisodeShow.module.scss'
+import {fetchEpisode, selectEpisode} from 'sites/show/episode/episodeSlice'
+import {CharacterListShow} from 'sites/show/itemList/CharacterListShow'
 import stylesShow from 'sites/show/Show.module.scss'
-import {CharacterList} from 'sites/show/itemList/CharacterList'
 
 export function EpisodeShow() {
     const {id} = useParams()
-    const [episode, setEpisode] = useState<TEpisode>()
-    const [err, setErr] = useState<TErr>(null)
-    const [arrayOfId, setArrayOfId] = useState<string[]>()
+    const {value, characterList, errorList, errorValue} = useSelector(selectEpisode)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (!id) return
 
-        axios.get(`https://rickandmortyapi.com/api/episode/${id}`)
-            .then(({data}: {data: TEpisode}) => setEpisode(data))
-            .catch(({response}) => setErr(response.data.error))
-    }, [id])
+        dispatch(fetchEpisode({id}))
+    }, [dispatch, id])
 
-    useEffect(() => {
-        if (!episode) return
+    if (errorValue) return <ShowError text={errorValue}/>
+    if (!value) return <Loader/>
 
-        setArrayOfId(episode.characters.map(el => el.slice(42)))
-    }, [episode])
-
-    if (err) return <ShowError text={err}/>
-    if (!episode) return <Loader/>
-
-    const {name, air_date} = episode
+    const {name, air_date} = value
 
     return (
         <article className={styles.episode}>
             <h1>{name}</h1>
 
             <section className={styles.content}>
-                <EpisodeMark mark={episode.episode}/>
+                <EpisodeMark mark={value.episode}/>
                 <div className={stylesShow.property}>
                     <div>Air date:</div>
                     <div>{air_date}</div>
@@ -47,7 +39,7 @@ export function EpisodeShow() {
 
             <section>
                 <h2>Characters from the episode:</h2>
-                {arrayOfId && <CharacterList arrayOfId={arrayOfId}/>}
+                <CharacterListShow list={characterList} error={errorList}/>
             </section>
         </article>
     )

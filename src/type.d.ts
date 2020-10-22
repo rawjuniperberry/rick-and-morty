@@ -1,9 +1,6 @@
 type TErr = string | null
 
-type TServer = {
-    info: TInfo,
-    results: TResults
-}
+type TServer = {info: TInfo, results: TResults} | null
 
 type TInfo = {
     count: number, next: string | null, pages: number, prev: string | null,

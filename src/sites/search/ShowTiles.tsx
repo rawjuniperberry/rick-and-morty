@@ -1,18 +1,12 @@
-import {Loader} from 'components/loader/Loader'
-import {ShowError} from 'components/showError/ShowError'
 import {CharacterTile} from 'components/tiles/characterTile/CharacterTile'
 import {EpisodeTile} from 'components/tiles/episodeTile/EpisodeTile'
 import {LocationTile} from 'components/tiles/locationTile/LocationTile'
 import React from 'react'
 import {ContentType} from 'service/contentParam'
 
-type TProps = {contentType: ContentType, results?: TResults, err: TErr}
+type TProps = {contentType: ContentType, results: TResults}
 
-export function ShowTiles({contentType, results, err}: TProps) {
-
-    if (err) return <ShowError text={err}/>
-    if (!results) return <Loader/>
-
+export function ShowTiles({contentType, results}: TProps) {
     return (
         <section className='itemList'>
             {contentType === ContentType.characters &&
