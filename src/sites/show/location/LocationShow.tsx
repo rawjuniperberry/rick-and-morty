@@ -10,7 +10,7 @@ import stylesShow from 'sites/show/Show.module.scss'
 
 export function LocationShow() {
     const {id} = useParams()
-    const {value, characterList, errorList, errorValue} = useSelector(selectLocation)
+    const {location, characterList, errorList, errorLocation} = useSelector(selectLocation)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -20,10 +20,10 @@ export function LocationShow() {
     }, [dispatch, id])
 
 
-    if (errorValue) return <ShowError text={errorValue}/>
-    if (!value) return <Loader/>
+    if (errorLocation) return <ShowError text={errorLocation}/>
+    if (!location) return <Loader/>
 
-    const {name, dimension, type} = value
+    const {name, dimension, type} = location
 
     return (
         <article className={styles.location}>

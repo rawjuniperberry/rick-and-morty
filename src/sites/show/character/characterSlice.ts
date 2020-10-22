@@ -3,16 +3,16 @@ import axios from 'axios'
 import {TStoreState} from 'store/store'
 
 export type TCharacterState = {
-    value: TCharacter | null,
+    character: TCharacter | null,
     episodeList: TEpisode[] | null,
-    errorValue: string | undefined,
+    errorCharacter: string | undefined,
     errorList: string | undefined,
 }
 
 const initialState: TCharacterState = {
-    value: null,
+    character: null,
     episodeList: null,
-    errorValue: undefined,
+    errorCharacter: undefined,
     errorList: undefined,
 }
 
@@ -46,11 +46,11 @@ const characterSlice = createSlice({
     reducers: {},
     extraReducers: builder => {
         builder.addCase(fetchCharacter.fulfilled, (state, action) => {
-            state.value = action.payload
-            state.errorValue = undefined
+            state.character = action.payload
+            state.errorCharacter = undefined
         })
         builder.addCase(fetchCharacter.rejected, (state, action) => {
-            state.errorValue = action.payload
+            state.errorCharacter = action.payload
         })
         builder.addCase(fetchEpisodeList.fulfilled, (state, action) => {
             state.episodeList = action.payload

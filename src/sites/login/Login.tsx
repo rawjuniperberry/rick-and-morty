@@ -12,13 +12,13 @@ const schema = yup.object({
     email: yup
         .string()
         .required('This field is required')
-        .min(5, 'Enter up at least 5 characters')
+        .min(5, 'Enter at least 5 characters')
         .max(100, 'Enter up to 100 characters')
         .email('Email address is invalid'),
     password: yup
         .string()
         .required('This field is required')
-        .min(8, 'Enter up at least 8 characters')
+        .min(8, 'Enter at least 8 characters')
         .max(100, 'Enter up to 100 characters'),
 }).defined()
 

@@ -4,16 +4,16 @@ import {getFetchCharacterListThunk} from 'sites/show/itemList/CharacterListShow'
 import {TStoreState} from 'store/store'
 
 export type TLocationState = {
-    value: TLocation | null,
+    location: TLocation | null,
     characterList: TCharacter[] | null,
-    errorValue: string | undefined,
+    errorLocation: string | undefined,
     errorList: string | undefined,
 }
 
 const initialState: TLocationState = {
-    value: null,
+    location: null,
     characterList: null,
-    errorValue: undefined,
+    errorLocation: undefined,
     errorList: undefined,
 }
 
@@ -38,11 +38,11 @@ const locationSlice = createSlice({
     reducers: {},
     extraReducers: builder => {
         builder.addCase(fetchLocation.fulfilled, (state, action) => {
-            state.value = action.payload
-            state.errorValue = undefined
+            state.location = action.payload
+            state.errorLocation = undefined
         })
         builder.addCase(fetchLocation.rejected, (state, action) => {
-            state.errorValue = action.payload
+            state.errorLocation = action.payload
         })
         builder.addCase(fetchCharacterList.fulfilled, (state, action) => {
             state.characterList = action.payload

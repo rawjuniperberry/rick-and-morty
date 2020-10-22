@@ -10,7 +10,7 @@ import stylesShow from 'sites/show/Show.module.scss'
 
 export function CharacterShow() {
     const {id} = useParams()
-    const {value, episodeList, errorList, errorValue} = useSelector(selectCharacter)
+    const {character, episodeList, errorList, errorCharacter} = useSelector(selectCharacter)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -19,10 +19,10 @@ export function CharacterShow() {
         dispatch(fetchCharacter({id}))
     }, [id, dispatch])
 
-    if (errorValue) return <ShowError text={errorValue}/>
-    if (!value) return <Loader/>
+    if (errorCharacter) return <ShowError text={errorCharacter}/>
+    if (!character) return <Loader/>
 
-    const {gender, name, image, status, species, location, origin} = value
+    const {gender, name, image, status, species, location, origin} = character
 
     return (
         <article className={styles.character}>

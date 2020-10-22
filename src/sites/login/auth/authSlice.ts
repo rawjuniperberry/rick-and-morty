@@ -15,7 +15,7 @@ const authSlice = createSlice({
     initialState: initialState,
     reducers: {
         signIn: (state, action: PayloadAction<TAuthSignInPayload>) => {
-            const {name, uuid, JWT} =action.payload
+            const {name, uuid, JWT} = action.payload
             state.name = name
             state.uuid = uuid
             state.JWT = JWT

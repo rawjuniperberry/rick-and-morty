@@ -26,7 +26,7 @@ export function Header() {
                         <Person/>
                     </div>
 
-                    <button className='btnClear' onClick={() => signOut()}>
+                    <button className='btnClear' onClick={signOut}>
                         <div>Sign out</div>
                     </button>
                 </div>

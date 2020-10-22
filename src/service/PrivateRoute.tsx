@@ -5,11 +5,11 @@ import {selectAuth} from 'sites/login/auth/authSlice'
 
 type TProps = {component: ComponentType<any>, path: string, exact?: boolean}
 
-export const PrivateRoute = ({component: Component, ...rest}: TProps) => {
+export const PrivateRoute = ({component: Component, ...routeProps}: TProps) => {
     const auth = useSelector(selectAuth)
 
     return auth.JWT ?
-        <Route {...rest} render={props => <Component {...props}/>}/>
+        <Route {...routeProps} render={props => <Component {...props}/>}/>
         :
         <Redirect to='/login'/>
 }

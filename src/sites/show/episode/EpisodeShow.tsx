@@ -11,7 +11,7 @@ import stylesShow from 'sites/show/Show.module.scss'
 
 export function EpisodeShow() {
     const {id} = useParams()
-    const {value, characterList, errorList, errorValue} = useSelector(selectEpisode)
+    const {episode, characterList, errorList, errorEpisode} = useSelector(selectEpisode)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -20,17 +20,17 @@ export function EpisodeShow() {
         dispatch(fetchEpisode({id}))
     }, [dispatch, id])
 
-    if (errorValue) return <ShowError text={errorValue}/>
-    if (!value) return <Loader/>
+    if (errorEpisode) return <ShowError text={errorEpisode}/>
+    if (!episode) return <Loader/>
 
-    const {name, air_date} = value
+    const {name, air_date} = episode
 
     return (
         <article className={styles.episode}>
             <h1>{name}</h1>
 
             <section className={styles.content}>
-                <EpisodeMark mark={value.episode}/>
+                <EpisodeMark mark={episode.episode}/>
                 <div className={stylesShow.property}>
                     <div>Air date:</div>
                     <div>{air_date}</div>

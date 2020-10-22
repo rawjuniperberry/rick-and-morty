@@ -4,16 +4,16 @@ import {getFetchCharacterListThunk} from 'sites/show/itemList/CharacterListShow'
 import {TStoreState} from 'store/store'
 
 export type TEpisodeState = {
-    value: TEpisode | null,
+    episode: TEpisode | null,
     characterList: TCharacter[] | null,
-    errorValue: string | undefined,
+    errorEpisode: string | undefined,
     errorList: string | undefined,
 }
 
 const initialState: TEpisodeState = {
-    value: null,
+    episode: null,
     characterList: null,
-    errorValue: undefined,
+    errorEpisode: undefined,
     errorList: undefined,
 }
 
@@ -38,11 +38,11 @@ const episodeSlice = createSlice({
     reducers: {},
     extraReducers: builder => {
         builder.addCase(fetchEpisode.fulfilled, (state, action) => {
-            state.value = action.payload
-            state.errorValue = undefined
+            state.episode = action.payload
+            state.errorEpisode = undefined
         })
         builder.addCase(fetchEpisode.rejected, (state, action) => {
-            state.errorValue = action.payload
+            state.errorEpisode = action.payload
         })
         builder.addCase(fetchCharacterList.fulfilled, (state, action) => {
             state.characterList = action.payload
