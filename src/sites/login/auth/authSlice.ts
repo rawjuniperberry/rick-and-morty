@@ -18,12 +18,15 @@ const authSlice = createSlice({
             const {name, uuid, JWT} =action.payload
             state.name = name
             state.uuid = uuid
+            state.JWT = JWT
+
             localStorage.setItem('account', `${name}|${uuid}|${JWT}`)
         },
         signOut: state => {
             state.name = ''
             state.uuid = ''
             state.JWT = ''
+
             localStorage.removeItem('account')
         },
     },

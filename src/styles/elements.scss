@@ -4,9 +4,15 @@
   width: 100%;
   padding: 10px 20px;
   border-radius: 20px;
-  border: none;
   background-color: var(--turquoiseLight);
-  font-size: 100%;
+  border: 1px solid var(--turquoise);
+  font-size: 1rem;
+}
+
+.input:invalid {
+  @extend .input;
+  background-color: var(--errorLight);
+  border: 1px solid var(--error);
 }
 
 .btn {

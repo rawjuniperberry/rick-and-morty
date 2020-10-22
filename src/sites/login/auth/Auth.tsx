@@ -3,8 +3,8 @@ import {ReactComponent as Close} from 'icons/close.svg'
 import {ReactComponent as Person} from 'icons/person.svg'
 import React from 'react'
 import {useDispatch} from 'react-redux'
-import styles from 'sites/layout/auth/Auth.module.scss'
-import {signIn, TAuthSignInPayload} from './authSlice'
+import styles from 'sites/login/auth/Auth.module.scss'
+import {signIn, TAuthSignInPayload} from 'sites/login/auth/authSlice'
 
 type TProps = {closeFn: () => void}
 

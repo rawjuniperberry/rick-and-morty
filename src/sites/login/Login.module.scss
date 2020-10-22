@@ -1,0 +1,43 @@
+.login {
+  h1 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+
+    label {
+      margin-top: 20px;
+
+      div {
+        margin: 0 0 5px 10px;
+      }
+
+      .error {
+        height: 20px;
+        margin: 5px 0 0 10px;
+        font-weight: bold;
+        color: var(--error);
+      }
+    }
+
+    button {
+      margin-top: 20px;
+    }
+  }
+
+  .credentials {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > div {
+      margin-top: 20px;
+    }
+  }
+}
