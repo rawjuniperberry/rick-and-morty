@@ -1,6 +1,6 @@
 import {useCallback} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {selectAuth, signOut} from 'sites/login/auth/authSlice'
+import {selectAuth, signOut} from 'sites/login/authSlice'
 
 export function useSignOut() {
     const auth = useSelector(selectAuth)

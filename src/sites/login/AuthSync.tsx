@@ -1,6 +1,6 @@
 import React, {Fragment, useCallback, useEffect} from 'react'
 import {useDispatch} from 'react-redux'
-import {signIn, signOut} from 'sites/login/auth/authSlice'
+import {signIn, signOut} from 'sites/login/authSlice'
 
 export function AuthSync() {
     const dispatch = useDispatch()

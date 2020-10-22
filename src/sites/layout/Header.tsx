@@ -4,8 +4,8 @@ import React from 'react'
 import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import styles from 'sites/layout/Header.module.scss'
-import {selectAuth} from 'sites/login/auth/authSlice'
-import {useSignOut} from 'sites/login/auth/useSignOut'
+import {selectAuth} from 'sites/login/authSlice'
+import {useSignOut} from 'sites/login/useSignOut'
 
 export function Header() {
     const auth = useSelector(selectAuth)

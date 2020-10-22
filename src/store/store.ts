@@ -1,5 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit'
-import authReducer, {TAuthState} from 'sites/login/auth/authSlice'
+import authReducer, {TAuthState} from 'sites/login/authSlice'
 import searchReducer, {TSearchState} from 'sites/search/searchSlice'
 import characterReducer, {TCharacterState} from 'sites/show/character/characterSlice'
 import episodeReducer, {TEpisodeState} from 'sites/show/episode/episodeSlice'

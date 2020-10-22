@@ -1,7 +1,7 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
 import styles from 'sites/dashboard/Dashboard.module.scss'
-import {selectAuth} from 'sites/login/auth/authSlice'
+import {selectAuth} from 'sites/login/authSlice'
 
 export function Dashboard() {
     const auth = useSelector(selectAuth)
